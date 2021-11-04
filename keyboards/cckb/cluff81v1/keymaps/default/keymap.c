@@ -16,6 +16,12 @@
 #include "cluff81v1/cluff81v1.h"
 #include "cckb/cluff81v1/config.h"
 
+enum custom_keycodes {
+    MOVE
+};
+
+bool move_mouse = false;
+
 enum keyboard_layers {
     _BL,
     _ML,
@@ -35,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRV,     KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       KC_MINS,    KC_EQL,     KC_BSPC,    KC_F13,
         KC_TAB,     KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_LBRC,    KC_RBRC,    KC_BSLS,    KC_F14,
         MO(_TL),    KC_A,       KC_S,       KC_D,       KC_F,       KC_G,       KC_H,       KC_J,       KC_K,       KC_L,       KC_SCLN,    KC_QUOT,    KC_ENT,     KC_F15,
-        KC_LSFT,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,    KC_RSFT,    KC_F16,
+        KC_LSFT,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,    KC_RSFT,    MOVE,
         KC_LGUI,    KC_LCTL,    KC_LALT,    KC_SPC,     KC_BSPC,    KC_DEL,     KC_RALT,    KC_RCTL,    TG(_ML)),
     [_TL] = LAYOUT(
         KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    RESET,      KC_TRNS,    KC_TRNS,
@@ -45,10 +51,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_F21,
         KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_F22)
 };
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    return true;
-}
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
   if (index == 0) { /* First encoder */
@@ -61,8 +63,26 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
   return true;
 }
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case MOVE:
+            if (record->event.pressed) {
+                move_mouse = !move_mouse;
+            }
+            break;
+    }
+    return true;
+}
+
 void matrix_init_user(void) {}
 
-void matrix_scan_user(void) {}
+void matrix_scan_user(void) {
+    if (move_mouse) {
+        tap_code(KC_MS_UP);
+        tap_code(KC_MS_DOWN);
+        tap_code(KC_MS_LEFT);
+        tap_code(KC_MS_RIGHT);
+    }
+}
 
 void led_set_user(uint8_t usb_led) {}
