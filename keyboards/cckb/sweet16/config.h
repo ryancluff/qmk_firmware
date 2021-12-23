@@ -14,8 +14,8 @@
 #define MATRIX_COLS 4
 
 /* key matrix pins */
-#define MATRIX_ROW_PINS { F4, F5, F6, F7 }
-#define MATRIX_COL_PINS { D1, D0, D4, C6 }
+#define MATRIX_ROW_PINS { A2, A1, A0, B8 }
+#define MATRIX_COL_PINS { B7, B6, B5, B4 }
 #define UNUSED_PINS
 
 /* COL2ROW or ROW2COL */
@@ -23,9 +23,3 @@
 
 /* Set 0 if debouncing isn't needed */
 #define DEBOUNCE 5
-
-#ifndef CONVERT_TO_PROTON_C
-#    define LED_NUM_LOCK_PIN B0 // RXLED
-#    define LED_CAPS_LOCK_PIN D5 // TXLED
-#    define LED_PIN_ON_STATE 0
-#endif
