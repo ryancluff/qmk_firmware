@@ -13,7 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "cluff81v1/cluff81v1.h"
+#include "cckb/cluff81v1/cluff81v1.h"
 #include "cckb/cluff81v1/config.h"
 
 enum custom_keycodes {
