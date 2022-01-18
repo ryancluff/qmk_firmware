@@ -16,8 +16,19 @@
 #include "cluff81v2/cluff81v2.h"
 #include "cckb/cluff81v2/config.h"
 
+enum custom_keycodes {
+    MOVE,
+    ENCODER,
+    E_CW,
+    E_CCW
+};
+
+bool move_mouse = false;
+bool alt_held = false;
+
 enum keyboard_layers {
     _BL,
+    _ML,
     _TL
 };
 
