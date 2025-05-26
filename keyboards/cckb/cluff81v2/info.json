@@ -1,0 +1,9 @@
+{
+    "keyboard_name": "c81m",
+    "manufacturer": "lurch",
+    "usb": {
+        "pid": "0x0081",
+        "vid": "0x0001",
+        "device_version": "0.0.1"
+    }
+}

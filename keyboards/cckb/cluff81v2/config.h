@@ -19,14 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "config_common.h"
 
-/* USB Device descriptor parameter */
-#define VENDOR_ID 0xFEED
-#define PRODUCT_ID 0x0081
-#define DEVICE_VER 0x0001
-#define MANUFACTURER lurch
-#define PRODUCT c81m
-#define DESCRIPTION 81 key keyboard
-
 #define ENCODERS_PAD_A { D3 }
 #define ENCODERS_PAD_B { D2 }
 #define ENCODER_RESOLUTION 1
@@ -49,7 +41,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     { B7, B2, B1, F1, F5, D6 }
 #define MATRIX_COL_PINS \
     { B4, B5, B6, F0, C6, E6, C7, B0, F7, F6, D7, F4, D5, B3 }
-#define UNUSED_PINS
 
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION COL2ROW
